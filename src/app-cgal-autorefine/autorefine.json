@@ -1,0 +1,32 @@
+{
+    "bin_dir":"$PWD/build/default/src/app-cgal-autorefine/",
+    "executable":"{{bin_dir}}/apps_cgal_autorefine",
+    "use_case_name":"Structured_Grid",
+    "timeout":"0-0:10:0",
+    "output_directory": "{{machine.output_app_dir}}/app-cgal-autorefine/{{use_case_name}}/{{instance}}",
+    "options":[
+        "--output-dirpath={{output_directory}}",
+        "--triangles={{parameters.triangles.value}}",
+        "--concurrency.max-threads={{parameters.max_workers.value}}"
+    ],
+    "scalability":{
+        "directory":"{{output_directory}}",
+        "stages":[
+            {
+                "name":"autorefine",
+                "filepath":"timekeeper.json",
+                "format":"json",
+                "variables_path":["autorefine.times.*","autorefine.subsections.*.times.elapsed"]
+            }
+        ]
+    },
+    "resources":{
+        "tasks":1,
+        "exclusive_access":true
+    },
+    "parameters":[
+        //{ "name": "max_workers", "sequence":[1,2,4,8,16,32,64] },
+        { "name": "max_workers", "sequence":[1,2,4,8] },
+        { "name": "triangles", "sequence":[100,200,300,400,500] }
+    ]
+}

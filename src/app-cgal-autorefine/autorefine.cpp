@@ -28,7 +28,7 @@ main( int argc, char** argv )
     std::unique_ptr<Mesh> grid1 = gridMesher.matrixToMesh( gridPoints );
     grid1->reverseFaceOrientation();
     std::unique_ptr<Mesh> grid2 = gridMesher.matrixToMesh( gridPoints );
-    grid2->apply( AffineTransformation<double,3>( 1, 0, 0, 0, 
+    grid2->apply( AffineTransformation<double,3>( 1, 0, 0, 0,
                                                   0, -1, 0, 1,
                                                   0, 0, -1, 0 )
     );

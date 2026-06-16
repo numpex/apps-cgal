@@ -1,0 +1,44 @@
+{
+    "contents":[
+        {
+            "type":"section",
+            "title":"CGAL autorefine_triangle_soup",
+            "contents":[
+                {
+                    "type":"plot",
+                    "plot":{
+                        "title": "Multithreaded Performance",
+                        "plot_types": [ "scatter", "grouped_bar","stacked_bar" ],
+                        "xaxis": { "parameter": "max_workers", "label": "Number of threads" },
+                        "color_axis":{ "parameter": "triangles", "label": "Number of triangles" },
+                        "yaxis": { "label": "execution time (s)" },
+                        "aggregations":[ {"column":"perfvalue","agg":"filter:autorefine_cgalAutorefine"} ]
+                    }
+                },
+                {
+                    "type":"plot",
+                    "plot":{
+                        "title": "Speedup",
+                        "plot_types": [ "scatter" ],
+                        "transformation":"speedup",
+                        "xaxis": { "parameter": "max_workers", "label": "Number of threads" },
+                        "color_axis":{ "parameter": "triangles", "label": "Number of triangles" },
+                        "yaxis": { "label": "speedup" },
+                        "aggregations":[ {"column":"perfvalue","agg":"filter:autorefine_cgalAutorefine"} ]
+                    }
+                },
+                {
+                    "type":"plot",
+                    "plot":{
+                        "title": "Time Complexity",
+                        "plot_types": [ "scatter", "grouped_bar" ],
+                        "secondary_axis": { "parameter": "max_workers", "label": "Number of threads" },
+                        "xaxis":{ "parameter": "triangles", "label": "Number of triangles" },
+                        "yaxis": { "label": "Execution time" },
+                        "color_axis":{ "parameter":"perfvalue","filter":[{"autorefine_cgalAutorefine":"Autorefine"}] }
+                    }
+                }
+            ]
+        }
+    ]
+}
