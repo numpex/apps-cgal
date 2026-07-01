@@ -1,42 +1,205 @@
 {
+    "data":[
+        {
+            "name":"demonstrator_descr",
+            "columns":[
+                {
+                    "name":"Field",
+                    "values":[
+                        "id", "name", "Partners", "PC", "Responsible", "WP7 Engineer", "work_package", "application_type",
+                        "purpose", "Method-Algorithm WP1", "Method-Algorithm WP2", "Method-Algorithm WP3", "Method-Algorithm WP4",
+                        "Method-Algorithm WP5", "Method-Algorithm WP6", "WP7", "outputs", "metrics", "status", "Benchmark scope",
+                        "Framework", "parallel_framework", "spec_due", "proto_due", "repo_url"
+                    ]
+                },
+                {
+                    "name":"Details",
+                    "values":[
+                        "app-feelpp-io", "Test Parallel Mesh Autorefinement", "Unistra, Inria CA", "PC1 - ExaMA",
+                        "(Permanent) V. Chabannes, C. Prud'homme", "Javier Cladellas (UNISTRA)",
+                        "WP1", "mini-app", "Test the parallel performance of triangle mesh autorefinement",
+                        "Unstructured mesh", " ", " ", " ", " ", "",
+                        " ", "GMSH mesh, JSON performance metrics", "strong-scalability, weak-scalability, time-to-solution",
+                        "benchmark-ready", "single-node", "CGAL, Ktirio-geom", "Multithread-TBB, Multithread", "", "",
+                        "https://github.com/numpex/apps-cgal"
+                    ]
+                }
+            ]
+        }
+    ],
     "contents":[
         {
             "type":"section",
-            "title":"CGAL autorefine_triangle_soup",
+            "title":"Mini App: Mesh Autorefinemenet",
             "contents":[
                 {
-                    "type":"plot",
-                    "plot":{
-                        "title": "Multithreaded Performance",
-                        "plot_types": [ "scatter", "grouped_bar","stacked_bar" ],
-                        "xaxis": { "parameter": "max_workers", "label": "Number of threads" },
-                        "color_axis":{ "parameter": "triangles", "label": "Number of triangles" },
-                        "yaxis": { "label": "execution time (s)" },
-                        "aggregations":[ {"column":"perfvalue","agg":"filter:autorefine_cgalAutorefine"} ]
-                    }
+                    "type":"text",
+                    "text":"This mini-app tests the multithreaded performance of the triangle mesh autorefinement algorithm of CGAL."
                 },
                 {
-                    "type":"plot",
-                    "plot":{
-                        "title": "Speedup",
-                        "plot_types": [ "scatter" ],
-                        "transformation":"speedup",
-                        "xaxis": { "parameter": "max_workers", "label": "Number of threads" },
-                        "color_axis":{ "parameter": "triangles", "label": "Number of triangles" },
-                        "yaxis": { "label": "speedup" },
-                        "aggregations":[ {"column":"perfvalue","agg":"filter:autorefine_cgalAutorefine"} ]
-                    }
+                    "type":"text",
+                    "text":"The following table describes the specefications of the application"
+                },
+                { "type":"table", "ref":"demonstrator_descr" },
+                {
+                    "type":"section",
+                    "title":"Description of the benchmark",
+                    "contents":[
+                        {
+                            "type":"text",
+                            "text": "This benchmark evaluates the performance of the mesh autorefinement algorithm provided by CGAL. The routine takes two grid meshes and merges them, then it refines it so that all triangles and edges are correctly connected."
+                        },
+                        {
+                            "type":"text",
+                            "text": "The benchmark measures the core refinement execution time across different initial mesh sizes (ranging from 100 to 1000 triangles) for each input mesh, and is executed over varying thread counts (from 1 to 64 threads) to evaluate both multithreaded scalability and algorithmic time complexity."
+                        }
+                    ]
                 },
                 {
-                    "type":"plot",
-                    "plot":{
-                        "title": "Time Complexity",
-                        "plot_types": [ "scatter", "grouped_bar" ],
-                        "secondary_axis": { "parameter": "max_workers", "label": "Number of threads" },
-                        "xaxis":{ "parameter": "triangles", "label": "Number of triangles" },
-                        "yaxis": { "label": "Execution time" },
-                        "color_axis":{ "parameter":"perfvalue","filter":[{"autorefine_cgalAutorefine":"Autorefine"}] }
-                    }
+                    "type":"section",
+                    "title":"Benchmark Execution Summary",
+                    "contents": [
+                        {
+                            "type":"section",
+                            "title":"Session",
+                            "contents":[
+                                {
+                                    "type":"itemize",
+                                    "ref":"reframe_json",
+                                    "items":[
+                                        "Hostname: @{session_info.hostname}@",
+                                        "User: @{session_info.hostname}@",
+                                        "Time Start: @{session_info.time_start}@",
+                                        "Time End: @{session_info.time_end}@"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type":"section",
+                            "title":"Cases",
+                            "contents":[
+                                {
+                                    "type":"itemize",
+                                    "ref":"reframe_json",
+                                    "items":[
+                                        "Total: @{session_info.num_cases}@ ",
+                                        "Failures: @{session_info.num_failures}@",
+                                        "Runs: @{runs | length}@"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type":"section",
+                            "title":"Parametrization",
+                            "contents":[
+                                {
+                                    "type":"table",
+                                    "ref": "parameter_table",
+                                    "layout":{
+                                        "column_order":["result","testcases.hashcode","max_workers","triangles", "testcases.time_total", "logs_link"],
+                                        "rename":{ "testcases.time_total":"Total Time (s)", "testcases.hashcode":"Hash", "result":"", "logs_link":"" }
+                                    },
+                                    "style":{
+                                        "column_align":{ "result":"center" },
+                                        "column_width":{ "result":1,"logs_link":1},
+                                        "classnames":["scrollable","sortable"]
+                                    },
+                                    "filter":{ "placeholder":"Filter testcases..." }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type":"section",
+                    "title":"Benchmarking Tools Used",
+                    "contents":[
+                        {
+                            "type":"text",
+                            "ref":"reframe_json",
+                            "text": "This benchmark was performed on the @{runs.0.testcases.0.system}@ supercomputer, using feelpp.benchmaring (*v.{feelpp_benchmarking_version}*)."
+                        }
+                    ]
+                },
+                {
+                    "type":"section",
+                    "title":"Input/Output Dataset Description",
+                    "contents":[
+                        {
+                            "type":"section",
+                            "title":"Input Data",
+                            "contents":[
+                                {
+                                    "type":"itemize",
+                                    "items":[
+                                        "Meshes: Initial two flat grid triangle meshes of varying sizes, containing between 100 and 1000 triangles each.",
+                                        "Setup: Utilizes the CGAL framework's mesh refinement functions, with shared-memory multithreading enabled via Intel TBB (Threading Building Blocks).",
+                                        "Execution Environment: Single-node execution to measure shared-memory performance and potential thread contention."
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type":"section",
+                            "title":"Output Data",
+                            "contents":[
+                                {
+                                    "type":"text",
+                                    "text": "The primary monitored quantity is the total execution time of the mesh autorefinement algorithm (`autorefine_cgalAutorefine`). These timings are recorded and analyzed to compute the parallel speedup and evaluate the algorithmic time complexity as the problem size scales."
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type":"section",
+                    "title":"Results summary",
+                    "contents":[
+                        {
+                            "type":"plot",
+                            "plot":{
+                                "title": "Multithreaded Performance",
+                                "plot_types": [ "scatter", "grouped_bar","stacked_bar" ],
+                                "xaxis": { "parameter": "max_workers", "label": "Number of threads" },
+                                "color_axis":{ "parameter": "triangles", "label": "Number of triangles" },
+                                "yaxis": { "label": "execution time (s)" },
+                                "aggregations":[ {"column":"perfvalue","agg":"filter:autorefine_cgalAutorefine"} ]
+                            }
+                        },
+                        {
+                            "type":"text",
+                            "text": "The figure above and the speedup chart below illustrate the multithreaded performance of the CGAL autorefinement algorithm for various mesh sizes using up to 8 threads. As observed, the parallel efficiency is highly constrained. While there is a slight decrease in execution time when moving from 1 to 2 or 4 threads, the speedup plateaus significantly below the optimal theoretical limit, achieving a maximum speedup of only ~2x to 2.5x on 8 threads. This poor scaling suggests a high level of sequential overhead, data dependency, or thread contention during concurrent local mesh updates."
+                        },
+                        {
+                            "type":"plot",
+                            "plot":{
+                                "title": "Speedup",
+                                "plot_types": [ "scatter" ],
+                                "transformation":"speedup",
+                                "xaxis": { "parameter": "max_workers", "label": "Number of threads" },
+                                "color_axis":{ "parameter": "triangles", "label": "Number of triangles" },
+                                "yaxis": { "label": "speedup" },
+                                "aggregations":[ {"column":"perfvalue","agg":"filter:autorefine_cgalAutorefine"} ]
+                            }
+                        },
+                        {
+                            "type":"text",
+                            "text": "The final figure illustrates the time complexity of the autorefinement algorithm. The execution time exhibits a non-linear (convex) growth with respect to the initial number of triangles. This behavior reflects the increasing computational cost associated with searching, verifying geometric properties, and maintaining the internal data structures as the mesh density increases."
+                        },
+                        {
+                            "type":"plot",
+                            "plot":{
+                                "title": "Time Complexity",
+                                "plot_types": [ "scatter", "grouped_bar" ],
+                                "secondary_axis": { "parameter": "max_workers", "label": "Number of threads" },
+                                "xaxis":{ "parameter": "triangles", "label": "Number of triangles" },
+                                "yaxis": { "label": "Execution time" },
+                                "color_axis":{ "parameter":"perfvalue","filter":[{"autorefine_cgalAutorefine":"Autorefine"}] }
+                            }
+                        }
+                    ]
                 }
             ]
         }

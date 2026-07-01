@@ -27,6 +27,6 @@
     "parameters":[
         //{ "name": "max_workers", "sequence":[1,2,4,8,16,32,64] },
         { "name": "max_workers", "sequence":[1,2,4,8] },
-        { "name": "triangles", "sequence":[100,200,300,400,500] }
+        { "name": "triangles", "sequence":[100,300,500,700,1000] }
     ]
 }
