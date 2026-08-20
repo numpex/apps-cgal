@@ -15,7 +15,7 @@
                 {
                     "name":"Details",
                     "values":[
-                        "app-feelpp-io", "Test Parallel Mesh Autorefinement", "Unistra, Inria CA", "PC1 - ExaMA",
+                        "app-cgal-autorefine", "Test Parallel Mesh Autorefinement", "Unistra, Inria CA", "PC1 - ExaMA",
                         "(Permanent) V. Chabannes, C. Prud'homme", "Javier Cladellas (UNISTRA)",
                         "WP1", "mini-app", "Test the parallel performance of triangle mesh autorefinement",
                         "Unstructured mesh", " ", " ", " ", " ", "",
@@ -47,7 +47,29 @@
                     "contents":[
                         {
                             "type":"text",
-                            "text": "This benchmark evaluates the performance of the mesh autorefinement algorithm provided by CGAL. The routine takes two grid meshes and merges them, then it refines it so that all triangles and edges are correctly connected."
+                            "text": "This benchmark evaluates the performance of the mesh autorefinement algorithm provided by CGAL. The routine takes two grid meshes and merges them, then it refines it so that all triangles and edges are correctly connected. Input meshes and resulting mesh can be seen on the <<io_meshes_fig, figures below>>"
+                        },
+                        {
+                            "type":"grid",
+                            "id":"io_meshes_fig",
+                            "columns":2,
+                            "gap":2,
+                            "align":"center",
+                            "justify":"center",
+                            "contents":[
+                                {
+                                    "type":"image",
+                                    "src":"../../_images/input_mesh.png",
+                                    "caption":"a) Input Meshes",
+                                    "is_remote":false
+                                },
+                                {
+                                    "type":"image",
+                                    "src":"../../_images/output_mesh.png",
+                                    "caption":"b) Output Mesh",
+                                    "is_remote":false
+                                }
+                            ]
                         },
                         {
                             "type":"text",
