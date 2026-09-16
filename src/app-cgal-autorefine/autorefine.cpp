@@ -1,6 +1,5 @@
 #include <ktirio/geom/meshio.hpp>
 #include <ktirio/geom/algorithms.hpp>
-#include <ktirio/geom/timekeeper.hpp>
 #include <ktirio/geom/terrain/grid_mesher.hpp>
 
 int

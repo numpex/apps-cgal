@@ -1,0 +1,19 @@
+{
+   "contents": [
+        {
+            "type":"section",
+            "title":"Results summary",
+            "contents":[
+                {
+                    "type":"plot",
+                    "plot":{
+                        "title": "Algorithmic Complexity Performance",
+                        "plot_types": [ "scatter" ],
+                        "xaxis": { "parameter": "cubes", "label": "Number of cubes" },
+                        "yaxis": { "label": "execution time (s)" }
+                    }
+                }
+            ]
+        }
+   ]
+}

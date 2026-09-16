@@ -17,7 +17,7 @@ include(FetchContent)
 
 FetchContent_Declare( ktirio-geom
     GIT_REPOSITORY https://github.com/feelpp/ktirio-geom.git
-    GIT_TAG 2110b6a1b4a7f68356d259b3e95b56515eb5b8e8
+    GIT_TAG b452b3a5ee0d0c1a42da174c0becb5730e3d7965
 )
 FetchContent_MakeAvailable(ktirio-geom)
 
