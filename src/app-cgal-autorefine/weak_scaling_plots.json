@@ -1,0 +1,120 @@
+{
+    "data":[
+        {
+            "name":"demonstrator_descr",
+            "columns":[
+                {
+                    "name":"Field",
+                    "values":[
+                        "id", "name", "Partners", "PC", "Responsible", "WP7 Engineer", "work_package", "application_type",
+                        "purpose", "Method-Algorithm WP1", "Method-Algorithm WP2", "Method-Algorithm WP3", "Method-Algorithm WP4",
+                        "Method-Algorithm WP5", "Method-Algorithm WP6", "WP7", "outputs", "metrics", "status", "Benchmark scope",
+                        "Framework", "parallel_framework", "spec_due", "proto_due", "repo_url"
+                    ]
+                },
+                {
+                    "name":"Details",
+                    "values":[
+                        "app-cgal-autorefine", "Test Parallel Mesh Autorefinement", "Unistra, Inria CA", "PC1 - ExaMA",
+                        "(Permanent) V. Chabannes, C. Prud'homme", "Javier Cladellas (UNISTRA)",
+                        "WP1", "mini-app", "Test the parallel performance of triangle mesh autorefinement",
+                        "Unstructured mesh", " ", " ", " ", " ", "",
+                        " ", "GMSH mesh, JSON performance metrics", "strong-scalability, weak-scalability, time-to-solution",
+                        "benchmark-ready", "single-node", "CGAL, Ktirio-geom", "Multithread-TBB, Multithread", "", "",
+                        "https://github.com/numpex/apps-cgal"
+                    ]
+                }
+            ]
+        }
+    ],
+    "contents":[
+        {
+            "type":"section",
+            "title":"Mini App: Mesh Autorefinemenet, weak scaling",
+            "contents":[
+                {
+                    "type":"text",
+                    "text":"This mini-app tests the weak scaling of the triangle mesh autorefinement algorithm of CGAL."
+                },
+                {
+                    "type":"text",
+                    "text":"The following table describes the specefications of the application"
+                },
+                { "type":"table", "ref":"demonstrator_descr" },
+                {
+                    "type":"section",
+                    "title":"Benchmark Execution Summary",
+                    "contents": [
+                        {
+                            "type":"section",
+                            "title":"Session",
+                            "contents":[
+                                {
+                                    "type":"itemize",
+                                    "ref":"reframe_json",
+                                    "items":[
+                                        "Hostname: @{session_info.hostname}@",
+                                        "User: @{session_info.hostname}@",
+                                        "Time Start: @{session_info.time_start}@",
+                                        "Time End: @{session_info.time_end}@"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type":"section",
+                            "title":"Cases",
+                            "contents":[
+                                {
+                                    "type":"itemize",
+                                    "ref":"reframe_json",
+                                    "items":[
+                                        "Total: @{session_info.num_cases}@ ",
+                                        "Failures: @{session_info.num_failures}@",
+                                        "Runs: @{runs | length}@"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            "type":"section",
+                            "title":"Parametrization",
+                            "contents":[
+                                {
+                                    "type":"table",
+                                    "ref": "parameter_table",
+                                    "layout":{
+                                        "column_order":["result","testcases.hashcode","scaling_points.max_workers","scaling_points.triangles", "testcases.time_total", "logs_link"],
+                                        "rename":{ "testcases.time_total":"Total Time (s)", "testcases.hashcode":"Hash", "result":"", "logs_link":"", "scaling_points.max_workers":"Max Workers", "scaling_points.triangles":"Triangles" }
+                                    },
+                                    "style":{
+                                        "column_align":{ "result":"center" },
+                                        "column_width":{ "result":1,"logs_link":1},
+                                        "classnames":["scrollable","sortable"]
+                                    },
+                                    "filter":{ "placeholder":"Filter testcases..." }
+                                }
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "type":"section",
+                    "title":"Results summary",
+                    "contents":[
+                        {
+                            "type":"plot",
+                            "plot":{
+                                "title": "Autorefinement Weak Scaling",
+                                "plot_types": [ "scatter", "grouped_bar","stacked_bar" ],
+                                "xaxis": { "parameter": "scaling_points.max_workers", "label": "Max workers" },
+                                "yaxis": { "label": "execution time (s)" },
+                                "aggregations":[ {"column":"perfvalue","agg":"filter:autorefine_cgalAutorefine"} ]
+                            }
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}
