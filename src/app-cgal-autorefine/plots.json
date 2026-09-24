@@ -73,7 +73,7 @@
                         },
                         {
                             "type":"text",
-                            "text": "The benchmark measures the core refinement execution time across different initial mesh sizes (ranging from 100 to 1000 triangles) for each input mesh, and is executed over varying thread counts (from 1 to 64 threads) to evaluate both multithreaded scalability and algorithmic time complexity."
+                            "text": "The benchmark measures the core refinement execution time across different initial mesh sizes (grid size ranging from 100 to 1000 points by side) for each input mesh, and is executed over varying thread counts (from 1 to 64 threads) to evaluate both multithreaded scalability and algorithmic time complexity."
                         }
                     ]
                 },
@@ -156,7 +156,7 @@
                                 {
                                     "type":"itemize",
                                     "items":[
-                                        "Meshes: Initial two flat grid triangle meshes of varying sizes, containing between 100 and 1000 triangles each.",
+                                        " Initial two flat grid triangle meshes of varying sizes of side lengths ranging from 100 to 1000 points. ",
                                         "Setup: Utilizes the CGAL framework's mesh refinement functions, with shared-memory multithreading enabled via Intel TBB (Threading Building Blocks).",
                                         "Execution Environment: Single-node execution to measure shared-memory performance and potential thread contention."
                                     ]
@@ -185,7 +185,7 @@
                                 "title": "Multithreaded Performance",
                                 "plot_types": [ "scatter", "grouped_bar","stacked_bar" ],
                                 "xaxis": { "parameter": "max_workers", "label": "Number of threads" },
-                                "color_axis":{ "parameter": "triangles", "label": "Number of triangles" },
+                                "color_axis":{ "parameter": "triangles", "label": "Grid size" },
                                 "yaxis": { "label": "execution time (s)" },
                                 "aggregations":[ {"column":"perfvalue","agg":"filter:autorefine_cgalAutorefine"} ]
                             }
@@ -201,7 +201,7 @@
                                 "plot_types": [ "scatter" ],
                                 "transformation":"speedup",
                                 "xaxis": { "parameter": "max_workers", "label": "Number of threads" },
-                                "color_axis":{ "parameter": "triangles", "label": "Number of triangles" },
+                                "color_axis":{ "parameter": "triangles", "label": "Grid size" },
                                 "yaxis": { "label": "speedup" },
                                 "aggregations":[ {"column":"perfvalue","agg":"filter:autorefine_cgalAutorefine"} ]
                             }
@@ -216,7 +216,7 @@
                                 "title": "Time Complexity",
                                 "plot_types": [ "scatter", "grouped_bar" ],
                                 "secondary_axis": { "parameter": "max_workers", "label": "Number of threads" },
-                                "xaxis":{ "parameter": "triangles", "label": "Number of triangles" },
+                                "xaxis":{ "parameter": "triangles", "label": "Grid size" },
                                 "yaxis": { "label": "Execution time" },
                                 "color_axis":{ "parameter":"perfvalue","filter":[{"autorefine_cgalAutorefine":"Autorefine"}] }
                             }
