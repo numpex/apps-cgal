@@ -9,8 +9,21 @@
                     "plot":{
                         "title": "Algorithmic Complexity Performance",
                         "plot_types": [ "scatter" ],
-                        "xaxis": { "parameter": "cubes", "label": "Number of cubes" },
-                        "yaxis": { "label": "execution time (s)" }
+                        "xaxis": { "parameter": "grid-size", "label": "Grid size" },
+                        "yaxis": { "label": "execution time (s)" },
+                        "color_axis":{ "parameter": "perfvalue", "filter":[ {"ccdt3_elapsed":"ccdt3"} ]},
+                        //"layout_modifiers": {
+                        //    "xaxis":{
+                        //        "type":"log",
+                        //        "dtick": 1,
+                        //        "tick0": 0
+                        //    },
+                        //    "yaxis":{
+                        //        "type":"log",
+                        //        "dtick": 1,
+                        //        "tick0": 0
+                        //    }
+                        //}
                     }
                 }
             ]

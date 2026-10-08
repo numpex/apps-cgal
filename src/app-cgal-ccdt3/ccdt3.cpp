@@ -1,4 +1,5 @@
 #include "feel/feelcore/timekeeper.hpp"
+#include <cmath>
 #include <ktirio/geom/meshio.hpp>
 #include <ktirio/geom/algorithms.hpp>
 #include <ktirio/geom/terrain/grid_mesher.hpp>
@@ -11,7 +12,7 @@ main( int argc, char** argv )
 
     po::options_description desc( "Allowed options" );
     desc.add_options()
-        ( "cubes", po::value<int>()->default_value( 10 ), "Number of cubes in each of the two grids to autorefine" )
+        ( "grid-size", po::value<int>()->default_value( 10 ), "Number of cubes in each of the two grids to autorefine" )
         ( "output-dirpath", po::value<std::string>()->default_value( "outputs" ), "Output directory path" )
     ;
 
@@ -20,7 +21,7 @@ main( int argc, char** argv )
     auto env = createEnvironment( argc, argv, desc );
     Timekeeper::instance()->setEnabled(true);
 
-    int nCubes = option( _name="cubes" ).as<int>();
+    int gridSize = option( _name="grid-size" ).as<int>();
 
 
     Terrain::LTriangleGridMesher gridMesher;
@@ -32,9 +33,9 @@ main( int argc, char** argv )
 
 
     auto cubesGrid = std::make_unique<Mesh>();
-    for ( int i = 0; i < nCubes; ++i )
-        for ( int j = 0; j < nCubes; ++j )
-            for ( int k = 0; k < nCubes; ++k )
+    for ( int i = 0; i < gridSize; ++i )
+        for ( int j = 0; j < gridSize; ++j )
+            for ( int k = 0; k < gridSize; ++k )
                 cubesGrid->merge(*cube,Mesh::affine_transformation_type::fromTranslation(i, j,k ));
 
     algorithms::autorefine(*cubesGrid);

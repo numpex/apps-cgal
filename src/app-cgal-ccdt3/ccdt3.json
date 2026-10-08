@@ -6,8 +6,7 @@
     "output_directory": "{{machine.output_app_dir}}/app-cgal-ccdt3/{{use_case_name}}/{{instance}}",
     "options":[
         "--output-dirpath={{output_directory}}",
-        "--cubes={{parameters.cubes.value}}"
-        //"--concurrency.max-threads={{parameters.max_workers.value}}"
+        "--grid-size={{parameters.grid-size.value}}"
     ],
     "scalability":{
         "directory":"{{output_directory}}",
@@ -25,9 +24,6 @@
         "exclusive_access":true
     },
     "parameters":[
-        //{ "name": "max_workers", "sequence":[1,2,4,8,16,32,64] },
-        //{ "name": "max_workers", "sequence":[1,2,4,8] },
-        //{ "name": "cubes", "sequence":[10,20,30] }
-        { "name": "cubes", "sequence":[10,20,30] }
+        { "name": "grid-size", "sequence":[1,2,3,4,5,6,7,8,9,10,20,30,40,60,80,100] }
     ]
 }
